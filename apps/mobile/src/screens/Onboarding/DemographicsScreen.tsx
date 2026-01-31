@@ -65,8 +65,17 @@ export const DemographicsScreen = ({ navigation, route }: any) => {
 
             navigation.reset({
                 index: 0,
-                routes: [{ name: 'Main' }],
-            })
+                routes: [{ name: 'Paywall' }], // Go to Paywall after onboarding
+            }) // Note: Paywall is inside AuthStack if not logged in, but we reset to it. Actually cleaner to keeping it in AuthNavigator or Main.
+            // Let's assume we keep them inside AuthNavigator flow for now.
+            // But reset clears stack. If 'Paywall' is in AuthNavigator, we need to navigate there.
+            // Let's use simple navigate for now since we are in Auth stack.
+            // Or better: reset to 'Paywall' if it's a sibling.
+            // Since AuthNavigator has Paywall, we can navigate.
+
+            // Correction: reset to Main is only if we skip Paywall.
+            // Let's navigate to Paywall.
+            navigation.navigate('Paywall')
         } catch (error: any) {
             Alert.alert('Error', error.message)
         }

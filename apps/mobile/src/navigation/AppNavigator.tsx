@@ -7,7 +7,10 @@ import { RegisterScreen } from '../screens/Auth/RegisterScreen'
 import { WelcomeScreen } from '../screens/Onboarding/WelcomeScreen'
 import { GoalScreen } from '../screens/Onboarding/GoalScreen'
 import { DemographicsScreen } from '../screens/Onboarding/DemographicsScreen'
+import { PaywallScreen } from '../screens/Paywall/PaywallScreen'
 import { DashboardScreen } from '../screens/Dashboard/DashboardScreen'
+import { FoodSearchScreen } from '../screens/Nutrition/FoodSearchScreen'
+import { BarcodeScannerScreen } from '../screens/Nutrition/BarcodeScannerScreen'
 import { useAuthStore } from '../store/authStore'
 import { supabase } from '../services/supabase'
 
@@ -21,11 +24,13 @@ const AuthNavigator = () => (
         <AuthStack.Screen name="Register" component={RegisterScreen} />
         <AuthStack.Screen name="Goal" component={GoalScreen} options={{ headerShown: false }} />
         <AuthStack.Screen name="Demographics" component={DemographicsScreen} options={{ headerShown: false }} />
+        <AuthStack.Screen name="Paywall" component={PaywallScreen} options={{ headerShown: false }} />
     </AuthStack.Navigator>
 )
 
 export const AppNavigator = () => {
     const { session, loading, setSession, setLoading } = useAuthStore()
+
 
     useEffect(() => {
         // 1. Initial Session Check
@@ -55,7 +60,13 @@ export const AppNavigator = () => {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 {session ? (
-                    <Stack.Screen name="Main" component={DashboardScreen} />
+                    <>
+                        <Stack.Screen name="Main" component={DashboardScreen} />
+                        <Stack.Screen name="FoodSearch" component={FoodSearchScreen} />
+                        <Stack.Screen name="BarcodeScanner" component={BarcodeScannerScreen} />
+                        <Stack.Screen name="WorkoutPlan" component={WorkoutPlanScreen} />
+                        <Stack.Screen name="Chat" component={ChatScreen} />
+                    </>
                 ) : (
                     <Stack.Screen name="Auth" component={AuthNavigator} />
                 )}
