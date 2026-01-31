@@ -63,7 +63,7 @@ export const AppNavigator = () => {
 
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {session ? (
+            {true || session ? (
                 <>
                     <Stack.Screen name="Main" component={DashboardScreen} />
                     <Stack.Screen name="FoodSearch" component={FoodSearchScreen} />

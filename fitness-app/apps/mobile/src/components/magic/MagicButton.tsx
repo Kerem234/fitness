@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TouchableOpacity, ViewStyle } from 'react-native'
+import { Text, TouchableOpacity, ViewStyle, View } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 
 interface Props {
